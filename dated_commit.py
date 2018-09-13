@@ -11,15 +11,14 @@ def get_file_paths(dir_):
     return [path.resolve() for path in dir_.iterdir() if not path.is_dir()]
 
 
-def get_modified_time(files, timezone):
+def get_modified_time(files):
     unix_times = [os.path.getmtime(f) for f in files]
-    return [dt.datetime.fromtimestamp(t, timezone).isoformat() for t in unix_times]
+    return [dt.datetime.fromtimestamp(t, gettz()).isoformat() for t in unix_times]
 
 
 if __name__ == '__main__':
     p = Path('.')
     paths = get_file_paths(p)
     print(paths)
-    tz = gettz('Asia/Calcutta')
-    times = get_modified_time(paths, tz)
+    times = get_modified_time(paths)
     print(times)
