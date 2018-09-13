@@ -17,7 +17,7 @@ def get_modified_time(files):
 
 
 if __name__ == '__main__':
-    p = Path('.')
+    p = Path()
     paths = get_file_paths(p)
     print(paths)
     times = get_modified_time(paths)
