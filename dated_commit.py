@@ -41,12 +41,16 @@ def git_commit_with_date(commit_msg, date, repo_path):
     return execute_shell_command(cmd, repo_path, env)
 
 
-if __name__ == '__main__':
-    p = Path('D:/code/interviewbit')
-    paths = get_file_paths(p)
-    print(paths)
+def git_commit_all_files(dir_):
+    paths = get_file_paths(dir_)
+    paths.sort(key=lambda x: os.path.getmtime(x))
     times = get_modified_time(paths)
-    print(times)
-    git_init(p)
-    git_add(paths[0], p)
-    git_commit_with_date(paths[0].name, times[0], p)
+    git_init(dir_)
+    for f, t in zip(paths, times):
+        git_add(f, dir_)
+        git_commit_with_date(f.name, t, dir_)
+
+
+if __name__ == '__main__':
+    p = Path()
+    git_commit_all_files(p)
