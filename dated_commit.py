@@ -17,8 +17,9 @@ def get_modified_time(files):
     return [dt.datetime.fromtimestamp(t, gettz()).isoformat() for t in unix_times]
 
 
-def execute_shell_command(cmd, work_dir):
-    pipe = subprocess.Popen(cmd, shell=True, cwd=work_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+def execute_shell_command(cmd, work_dir, env_vars={}):
+    pipe = subprocess.Popen(cmd, shell=True, env={**os.environ, **env_vars}, cwd=work_dir,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, error = pipe.communicate()
     print(out.decode(), error.decode())
     return out, error
@@ -40,6 +41,8 @@ if __name__ == '__main__':
     print(paths)
     times = get_modified_time(paths)
     print(times)
-    execute_shell_command('git --version', p)
-    git_init(p)
-    git_add(paths[0], p)
+    env = {'TEST_ENV_VAR': 'HELLO'}
+    execute_shell_command('set TEST_ENV_VAR', p, env_vars=env)
+    execute_shell_command('set TEST_ENV_VAR', p)
+    # git_init(p)
+    # git_add(paths[0], p)
