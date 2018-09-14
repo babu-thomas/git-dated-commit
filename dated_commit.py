@@ -1,5 +1,6 @@
 import datetime as dt
 import os
+import subprocess
 from pathlib import Path
 
 from dateutil.tz import gettz
@@ -16,8 +17,16 @@ def get_modified_time(files):
     return [dt.datetime.fromtimestamp(t, gettz()).isoformat() for t in unix_times]
 
 
+def execute_shell_command(cmd, work_dir):
+    pipe = subprocess.Popen(cmd, shell=True, cwd=work_dir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, error = pipe.communicate()
+    return out, error
+
+
 if __name__ == '__main__':
     p = Path()
+    out, error = execute_shell_command('git --version', p)
+    print(out.decode(), error.decode())
     paths = get_file_paths(p)
     print(paths)
     times = get_modified_time(paths)
