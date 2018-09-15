@@ -31,7 +31,7 @@ def git_init(path):
 
 
 def git_add(file_path, repo_path):
-    cmd = 'git add ' + str(file_path.resolve())
+    cmd = 'git add ' + f'"{str(file_path.resolve())}"'
     return execute_shell_command(cmd, repo_path)
 
 
