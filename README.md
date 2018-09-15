@@ -22,7 +22,7 @@ optional arguments:
 ```
 
 ## Why
-I wanted to create a git repository for an already existing project. I also wanted to preserve some form of history for the project. By committing all the files by their modified times, I can see the last time I touched a file. I can also see approximately when I started my project. I couldn't find a solution that does this, so I created one myself :) .
+I wanted to create a git repository for an already existing project. I also wanted to preserve some form of history for the project. By committing all the files with their modified times, I can see the last time I touched a file. I can also see approximately when I started my project. I couldn't find a solution that does this, so I created one myself :) .
 
 ## Resources
 - [How to work with dates and time with Python](https://web.archive.org/web/20180915081950/https://opensource.com/article/17/5/understanding-datetime-python-primer)
