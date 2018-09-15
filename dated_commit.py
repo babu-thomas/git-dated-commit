@@ -9,7 +9,7 @@ from dateutil.tz import gettz
 def get_file_paths(dir_):
     if not dir_.is_dir:
         return list(dir_.resolve())
-    return [path.resolve() for path in dir_.iterdir() if not path.is_dir()]
+    return [path.resolve() for path in dir_.glob('**/*') if not path.is_dir()]
 
 
 def get_modified_time(files):
