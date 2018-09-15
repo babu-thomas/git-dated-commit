@@ -1,3 +1,12 @@
+# usage: python dated_commit.py [-h] path
+#
+# positional arguments:
+#   path        Path to the folder containing files to commit
+#
+# optional arguments:
+#   -h, --help  show this help message and exit
+#
+
 import datetime as dt
 import os
 import subprocess
