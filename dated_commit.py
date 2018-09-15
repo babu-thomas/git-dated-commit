@@ -52,5 +52,10 @@ def git_commit_all_files(dir_):
 
 
 if __name__ == '__main__':
-    p = Path()
-    git_commit_all_files(p)
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path', help='Path to the folder containing files to commit')
+    args = parser.parse_args()
+
+    git_commit_all_files(Path(args.path))
